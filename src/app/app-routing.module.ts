@@ -6,9 +6,9 @@ import { WorkComponent } from './work/work.component';
 import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
-  { path: 'work', component: WorkComponent },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: 'work', loadChildren: './work/work.module#WorkModule' },
 ];
 
 @NgModule({
