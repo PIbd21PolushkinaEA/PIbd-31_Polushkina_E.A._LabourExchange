@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Vacancy} from '../vacancy';
 import {VacanciesService} from '../vacancies.service'
-import {Routes,ActivatedRoute, Params } from '@angular/router'
+import {Router, ActivatedRoute} from '@angular/router'
 
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -14,7 +14,7 @@ export class AddComponent implements OnInit {
 
   public Editor = ClassicEditor;
 
-  constructor(private vacanciesService: VacanciesService, private route: ActivatedRoute) { }
+  constructor(private vacanciesService: VacanciesService, private route: ActivatedRoute, private router: Router) { }
   vacancy: Vacancy = { id: null, position: null, description: null, salary: null , images:[]};
   id: string;
   
@@ -25,6 +25,7 @@ export class AddComponent implements OnInit {
     else {
       this.addVacancy(this.vacancy);
     }
+    this.router.navigateByUrl('/admin');
   }
 
   updateVacancy(vacancy: Vacancy) {
@@ -62,5 +63,9 @@ export class AddComponent implements OnInit {
       this.vacancy.images = result.list.images;
       }
     });
+  }
+
+  ngOnChanges(){
+    this.ngOnInit();
   }
 }

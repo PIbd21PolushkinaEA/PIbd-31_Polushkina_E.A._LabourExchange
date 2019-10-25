@@ -16,36 +16,37 @@ export class VacanciesService{
         this.handleError = httpErrorHandler.createHandleError ('VacanciesService')
     }
 
+    link: string = 'https://labourexchangebackend.herokuapp.com/api';
+
     getVacancies(): Observable<any>{
         return this.http
-        .get('api/vacancies')
+        .get(this.link + 'api/vacancies')
         .pipe(catchError(this.handleError('getVacancies')))
     }
     getVacancy(id: number): Observable<any> {
         const url = 'api/vacancies/' + id;
         return this.http
-            .get(url)
+            .get(this.link + url)
             .pipe(catchError(this.handleError('getVacancy', id)))
     }
 
     addVacancy(vacancy: Vacancy): Observable<any>{
         return this.http
-        .post<Vacancy>('api/vacancies', vacancy)
+        .post<Vacancy>(this.link + 'api/vacancies', vacancy)
         .pipe(catchError(this.handleError('addVacancy', vacancy)))
     }
 
     deleteVacancy(id: number): Observable<any>{
         const url = 'api/vacancies/'+id;
         return this.http
-        .delete(url)
+        .delete(this.link + url)
         .pipe(catchError(this.handleError('deleteVacancy',id)))
     }
 
     updateVacancy(vacancy: Vacancy): Observable<any>{        
         const url = 'api/vacancies/' + vacancy.id;
         return this.http
-            .put(url, vacancy)
+            .put(this.link + url, vacancy)
             .pipe(catchError(this.handleError('updateVacancy', vacancy)))
     }
-
 }

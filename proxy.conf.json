@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target":"http://localhost/PIbd-31_Polushkina_E.A._Backend/public/api",
+        "target": "https://labourexchangebackend.herokuapp.com/api",
         "secure": false,
         "logLevel":"debug",
         "changeOrigin": true,

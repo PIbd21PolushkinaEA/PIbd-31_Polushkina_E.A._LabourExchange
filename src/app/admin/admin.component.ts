@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Vacancy, Images} from './vacancy'
 import {VacanciesService} from './vacancies.service'
-import { Form } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -10,7 +10,7 @@ import { Form } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private vacanciesService: VacanciesService) { }
+  constructor(private vacanciesService: VacanciesService, private router: Router) { }
   vacancies: Vacancy[];
 
   deleteVacancy(id: number) {
@@ -18,7 +18,8 @@ export class AdminComponent implements OnInit {
       if (status == '204') {
         console.log("Vacancy deleted successfully: ", id)
       }
-    })
+    });
+    location.reload();
   }
 
   getVacancy(id: number) {
@@ -32,5 +33,9 @@ export class AdminComponent implements OnInit {
       this.vacancies = vacancies.list;
       console.log(this.vacancies);
     })
+  }
+
+  ngOnChanges(){
+    this.ngOnInit();
   }
 }

@@ -31,8 +31,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     HttpModule,
     FormsModule,
     HttpClientModule,
-    CKEditorModule,
-
+    CKEditorModule
   ],
   providers: [MessageService,HttpErrorHandler,VacanciesService],
   bootstrap: [AppComponent]
