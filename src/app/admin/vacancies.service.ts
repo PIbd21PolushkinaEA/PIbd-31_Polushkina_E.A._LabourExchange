@@ -16,7 +16,7 @@ export class VacanciesService{
         this.handleError = httpErrorHandler.createHandleError ('VacanciesService')
     }
 
-    link: string = 'https://labourexchangebackend.herokuapp.com/api';
+    link: string = 'https://labourexchangebackend.herokuapp.com/';
 
     getVacancies(): Observable<any>{
         return this.http
