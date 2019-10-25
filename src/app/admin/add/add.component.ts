@@ -1,0 +1,66 @@
+import { Component, OnInit } from '@angular/core';
+import {Vacancy} from '../vacancy';
+import {VacanciesService} from '../vacancies.service'
+import {Routes,ActivatedRoute, Params } from '@angular/router'
+
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+@Component({
+  selector: 'app-add',
+  templateUrl: './add.component.html',
+  styleUrls: ['./add.component.less']
+})
+export class AddComponent implements OnInit {
+
+  public Editor = ClassicEditor;
+
+  constructor(private vacanciesService: VacanciesService, private route: ActivatedRoute) { }
+  vacancy: Vacancy = { id: null, position: null, description: null, salary: null , images:[]};
+  id: string;
+  
+  createOrupdate() {
+    if (this.route.snapshot.data['mode'] == "edit") {
+      this.updateVacancy(this.vacancy);
+    }
+    else {
+      this.addVacancy(this.vacancy);
+    }
+  }
+
+  updateVacancy(vacancy: Vacancy) {
+    this.vacanciesService.updateVacancy(vacancy).subscribe(result => {
+      if (result.status == '201') {
+        console.log("Vacancy updated successfully: ", result.vacancy.position)
+      }
+    });
+  }
+
+  addVacancy(vacancy: Vacancy) {
+    this.vacanciesService.addVacancy(vacancy).subscribe(result => {
+      if (result.status == '201') {
+        console.log("Vacancy added successfully: ", result.list)
+      }
+    });
+  }
+
+  addImage() {
+    this.vacancy.images.push({ id: null, original: "", small: null, vacancy_id: this.vacancy.id });
+  }
+
+  delImage(i: number) {
+    this.vacancy.images.splice(i, 1);
+  }
+
+  ngOnInit() {
+    console.log(this.route.snapshot);
+    this.vacancy.id = this.route.snapshot.params['id'] * 1;
+    this.vacanciesService.getVacancy(this.vacancy.id).subscribe(result => {   
+      if (result.status == '200') {
+      this.vacancy.position = result.list.position;
+      this.vacancy.description = result.list.description;
+      this.vacancy.salary = result.list.salary;
+      this.vacancy.images = result.list.images;
+      }
+    });
+  }
+}

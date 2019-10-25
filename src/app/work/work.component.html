@@ -1,4 +1,12 @@
-<p>work works!</p>
+<div id="form" *ngFor="let vacancy of vacancies">
+      <div *ngFor="let image of vacancy.images">
+              <img [src]="image.original" width=20% height=20%>
+              
+      </div>
+      <label>Должность:&nbsp;</label> <label>{{vacancy.position}}</label><br>
+      <label>Описание:&nbsp;</label> <label [innerHTML]="vacancy.description"></label><br>
+      <label>З/п:&nbsp;</label> <label>{{vacancy.salary}}</label><br>
+  </div>
 
 
 

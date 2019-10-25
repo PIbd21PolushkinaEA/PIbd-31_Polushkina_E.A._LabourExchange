@@ -4,11 +4,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './header/app.component';
 import { WorkComponent } from './work/work.component';
 import { HomeComponent } from './home/home.component';
+import { AdminComponent } from './admin/admin.component';
+import { AddComponent } from './admin/add/add.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'admin', component: AdminComponent },
+  { path: 'admin/add', component: AddComponent },
+  { path: 'admin/edit/:id', component: AddComponent , data:{mode:"edit"}},
+  { path: 'work', component: WorkComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'work', loadChildren: './work/work.module#WorkModule' },
+  //{ path: 'work', loadChildren: './work/work.module#WorkModule' },
 ];
 
 @NgModule({

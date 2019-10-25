@@ -1,0 +1,25 @@
+<div id="form">
+        <label>Position</label>
+        <br>
+        <input #positionV type="text" name="position" placeholder="position" [(ngModel)]="vacancy.position">
+        <br>
+        <label>Salary</label>
+        <br>
+        <input #salaryV type="text" name="salary" placeholder="salary" [(ngModel)]="vacancy.salary">
+        <br>
+        <label>Description</label>
+        <br>
+        <ckeditor [(ngModel)]="vacancy.description" [editor]="Editor" ></ckeditor>
+        <!-- <input #descriptionV type="text" name="description" placeholder= "description"  [(ngModel)]="vacancy.description"> -->
+        <br>
+        <label>Image</label>
+        <br>
+        <div *ngFor="let image of vacancy.images; let i=index">
+                <input #imageV type="text" name="images" placeholder="image"  [(ngModel)]=image.original>
+                <input type="button" (click)="delImage(i)" value="-">
+        </div>    
+        <input type="button" (click)="addImage()" value="+">
+            <br><br>
+            <a routerLink="/admin" routerLinkActive="active"><button>Назад</button></a>
+            <input type="button" (click)="createOrupdate()" value="Сохранить">
+</div>

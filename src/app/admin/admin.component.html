@@ -1,0 +1,36 @@
+<a routerLink="/admin/add" routerLinkActive="active"><button>Добавить</button></a>
+
+<table id="d" width='50%'>
+  <tr>
+    <th></th>
+    <th id="dd" border='1'>ID</th>
+    <th id="dd" border='1'>Position</th>
+    <th id="dd" border='1'>Salary</th>
+    <th id="dd" border='1'>Description</th>
+    <th id="dd" border='1'>Image</th>
+
+  </tr>
+
+  <tr *ngFor="let vacancy of vacancies">
+      <td><button (click)="deleteVacancy(vacancy.id)">Delete</button>
+        <button [routerLink]="['/admin/edit/', vacancy.id]">Update</button></td>
+    <td id="dd">{{ vacancy.id }}</td>
+    <td id="dd">{{ vacancy.position }}</td>
+    <td id="dd">{{ vacancy.salary }}</td>
+    <td id="dd" [innerHTML]="vacancy.description"></td>
+        <td id="dd">
+            <div *ngFor="let image of vacancy.images">
+              {{image.original}}
+            </div>
+          </td>
+  </tr>
+</table>
+<br>
+<!-- <div *ngFor="let vacancy of vacancies">
+  <div *ngFor="let image of vacancy.images">
+      <img [src]="image.original" width=50% height=50%>
+  </div>
+</div> -->
+
+<br>
+<!-- <button (click)="getVacancy(8)">Get</button> -->
