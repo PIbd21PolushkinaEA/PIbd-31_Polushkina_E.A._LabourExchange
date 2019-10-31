@@ -10,7 +10,11 @@
 		<li><a routerLink="/home" routerLinkActive="active">О сайте</a>
 		<li><a routerLink="/work" routerLinkActive="active">Найти работу</a>
 		<li><a routerLink="/home" routerLinkActive="active" >Найти работников</a>
-		<li><a routerLink="/home" routerLinkActive="active">Контакты</a>
+			<li><a href="#">Контакты</a></li>
+			<li><a routerLink="/login">Авторизация</a></li>
+			<li><a routerLink="/register">Регистрация</a></li>
+			<li><a (click)="logout()">Выйти</a></li>
+			<li><label>{{ user_name }}</label></li>    
 		</ul>
 	</nav>
 	<router-outlet></router-outlet>

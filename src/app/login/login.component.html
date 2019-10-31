@@ -1,0 +1,13 @@
+<div id="form">
+    <label>E-mail</label>
+    <br>
+    <input #email type="text" name="email" placeholder="email" [(ngModel)]="user.email">
+    <br>
+    <label>Password</label>
+    <br>
+    <input #password type="text" name="password" placeholder="password" [(ngModel)]="user.password">
+    <br>
+    <br>
+    <a routerLink="/home"><button>Назад</button></a>
+    <input type="button" (click)="login()" value="Войти">
+</div>

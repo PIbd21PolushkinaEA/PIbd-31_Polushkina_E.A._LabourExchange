@@ -11,11 +11,17 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { AddComponent } from './admin/add/add.component';
 
+
 import { HttpErrorHandler } from './http-error-handler.service';
 import { MessageService } from './message.service';
 import {VacanciesService}from './admin/vacancies.service'
 
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { UserService } from './user.service';
+import { CookieService } from 'ngx-cookie-service'
+
 
 @NgModule({
   declarations: [
@@ -23,7 +29,9 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     HomeComponent,
     AdminComponent,
     AddComponent,
-    WorkComponent
+    WorkComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +41,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     HttpClientModule,
     CKEditorModule
   ],
-  providers: [MessageService,HttpErrorHandler,VacanciesService],
+  providers: [MessageService,HttpErrorHandler,VacanciesService, UserService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
