@@ -14,14 +14,16 @@ import { AddComponent } from './admin/add/add.component';
 
 import { HttpErrorHandler } from './http-error-handler.service';
 import { MessageService } from './message.service';
-import {VacanciesService}from './admin/vacancies.service'
+import { VacanciesService }from './admin/vacancies.service'
+import { authService } from './authService';
 
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './user.service';
 import { CookieService } from 'ngx-cookie-service'
-import { isAuthorized } from './isAuthorized'
+import { isAuthorized } from './isAuthorized';
+import { InfoComponent } from './info/info.component'
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { isAuthorized } from './isAuthorized'
     AddComponent,
     WorkComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import { isAuthorized } from './isAuthorized'
     HttpClientModule,
     CKEditorModule
   ],
-  providers: [MessageService,HttpErrorHandler,VacanciesService, UserService, CookieService, isAuthorized],
+  providers: [MessageService,HttpErrorHandler,VacanciesService, UserService, CookieService, isAuthorized, authService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

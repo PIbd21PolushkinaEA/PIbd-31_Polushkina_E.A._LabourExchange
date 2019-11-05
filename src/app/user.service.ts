@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { HttpHeaders } from '@angular/common/http'
 
 import { Observable } from 'rxjs'
@@ -37,5 +37,17 @@ export class UserService {
         return this.http
             .post('api/logout', this.options)
             .pipe(catchError(this.handleError('logout')))
+    }
+
+    loginFB(): Observable<any> {
+        return this.http
+            .get('api/login/facebook')
+            .pipe(catchError(this.handleError('loginFB')))
+    }
+
+    getAuth(): Observable<any> {
+        return this.http
+            .get('api/login/facebook/getAuth')
+            .pipe(catchError(this.handleError('getAuth')))
     }
 }
