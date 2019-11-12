@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit {
         console.log("Vacancy deleted successfully: ", id)
       }
     });
-    location.reload();
+    //location.reload();
   }
 
   getVacancy(id: number) {

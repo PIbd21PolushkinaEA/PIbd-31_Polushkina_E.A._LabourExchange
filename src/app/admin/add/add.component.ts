@@ -15,7 +15,7 @@ export class AddComponent implements OnInit {
   public Editor = ClassicEditor;
 
   constructor(private vacanciesService: VacanciesService, private route: ActivatedRoute, private router: Router) { }
-  vacancy: Vacancy = { id: null, position: null, description: null, salary: null , images:[]};
+  vacancy: Vacancy = { id: null, position: null, description: null, salary: null , images:[], images_files: []};
   id: string;
   
   createOrupdate() {
@@ -31,7 +31,11 @@ export class AddComponent implements OnInit {
   updateVacancy(vacancy: Vacancy) {
     this.vacanciesService.updateVacancy(vacancy).subscribe(result => {
       if (result.status == '201') {
-        console.log("Vacancy updated successfully: ", result.vacancy.position)
+
+        console.log("Vacancy updated successfully: ", result.vacancy.fio)
+        this.vacanciesService.addImages(vacancy, result.vacancy.id, 'edit').subscribe(result => {
+          console.log("Images added successfully: ", result.list)
+        });
       }
     });
   }
@@ -40,6 +44,9 @@ export class AddComponent implements OnInit {
     this.vacanciesService.addVacancy(vacancy).subscribe(result => {
       if (result.status == '201') {
         console.log("Vacancy added successfully: ", result.list)
+        this.vacanciesService.addImages(vacancy, result.list, 'add').subscribe(result => {
+          console.log("Images added successfully: ", result.list)
+        });
       }
     });
   }
@@ -65,7 +72,8 @@ export class AddComponent implements OnInit {
     });
   }
 
-  ngOnChanges(){
-    this.ngOnInit();
-  }
+  handleFileInput(files: FileList) {    
+    this.vacancy.images_files.push(files.item(0));    
+  console.log("files ", this.vacancy.images_files);
+}
 }

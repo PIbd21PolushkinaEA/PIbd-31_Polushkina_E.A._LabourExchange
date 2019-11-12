@@ -3,7 +3,8 @@ export interface Vacancy {
     position:string
     description:string
     salary: number
-    images:Array<Images>
+    images: Images[]
+    images_files: File[]
 }
 export interface Images {
     id: number

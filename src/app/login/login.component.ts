@@ -23,7 +23,7 @@ export class LoginComponent {
         this.authService.sendUserName(result.list.user_name);
       }      
     });
-    this.router.navigateByUrl('/work');   
+  this.router.navigateByUrl('/work');   
   }
   
   loginFB(){
