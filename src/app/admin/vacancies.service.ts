@@ -21,44 +21,49 @@ export class VacanciesService{
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.cookieService.get('token'))
       };
 
-    dropbox = {
+      dropbox = {
         headers: new HttpHeaders({
-        'Authorization': 'Bearer Hyp2HBT4BJAAAAAAAAAAiNSeIuQ6b5Sh-vy17eCiS4O71tijZipPr4BiQnX5fPUp',
+        'Authorization': 'Bearer ' + this.cookieService.get('dropbox_token'),
         'Content-Type': 'application/json'
     })};
 
-    //link: string = 'https://labourexchangebackend.herokuapp.com/';
+    link: string = 'https://labourexchangebackend.herokuapp.com/';
 
     getVacancies(): Observable<any>{
         return this.http
-        .get('api/vacancies',this.options)
+        //.get('api/vacancies',this.options)
+        .get(this.link + 'api/vacancies',this.options)
         .pipe(catchError(this.handleError('getVacancies')))
     }
 
     getVacancy(id: number): Observable<any> {
         const url = 'api/vacancies/' + id;
         return this.http
-            .get(url, this.options)
+            //.get(url, this.options)
+            .get(this.link + url, this.options)
             .pipe(catchError(this.handleError('getVacancy', id)))
     }
 
     addVacancy(vacancy: Vacancy): Observable<any>{
         return this.http
-        .post('api/vacancies', vacancy, this.options)
+        //.post('api/vacancies', vacancy, this.options)
+        .post(this.link + 'api/vacancies', vacancy, this.options)
         .pipe(catchError(this.handleError('addVacancy', vacancy)));
     }
 
     deleteVacancy(id: number): Observable<any>{
         const url = 'api/vacancies/'+id;
         return this.http
-        .delete(url, this.options)
+        //.delete(url, this.options)
+        .delete(this.link + url, this.options)
         .pipe(catchError(this.handleError('deleteVacancy',id)))
     }
 
     updateVacancy(vacancy: Vacancy): Observable<any>{        
         const url = 'api/vacancies/' + vacancy.id;
         return this.http
-            .put(url, vacancy, this.options)
+            //.put(url, vacancy, this.options)
+            .put(this.link + url, vacancy, this.options)
             .pipe(catchError(this.handleError('updateVacancy', vacancy)))
     }
 
@@ -78,7 +83,8 @@ export class VacanciesService{
             formData.append('images_files_'+i, vacancy.images_files[i]);
         }
         return this.http
-            .post('api/upload_to_dropbox', formData, this.options)
+            //.post('api/upload_to_dropbox', formData, this.options)
+            .post(this.link + 'api/upload_to_dropbox', formData, this.options)
             .pipe(catchError(this.handleError('addImages', formData)));
     }
 
@@ -98,7 +104,15 @@ export class VacanciesService{
         };
         
         return this.http
-        .post('api/search', <JSON>data, this.options)
+        //.post('api/search', <JSON>data, this.options)
+        .post(this.link + 'api/searchby', <JSON>data, this.options)
         .pipe(catchError(this.handleError('getResult', text)));
+    }
+    
+    getDT(): Observable<any>{
+        return this.http
+        //.get('api/dropbox', this.options)
+        .get(this.link + 'api/dropbox', this.options)
+        .pipe(catchError(this.handleError('getDropboxToken')));
     }
 }

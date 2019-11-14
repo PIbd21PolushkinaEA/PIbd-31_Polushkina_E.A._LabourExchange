@@ -3,6 +3,7 @@ import { CookieService } from 'ngx-cookie-service'
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { authService } from '../authService';
+import { VacanciesService } from '../admin/vacancies.service';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +14,18 @@ export class AppComponent {
 
   title = 'LabourExchange';
 
-  constructor(private userService: UserService, private cookieService: CookieService, private router: Router, private authService: authService) { 
+  constructor(private userService: UserService, private cookieService: CookieService, private router: Router, private authService: authService, private vacanciesService: VacanciesService) { 
     this.authService.getUserName().subscribe(result =>{
       this.user_name = result.text;
     });
     this.authService.getToken().subscribe(result =>{
       this.token = result.text;
+    });
+
+    this.vacanciesService.getDT().subscribe(result =>{
+      if (result.token){
+        this.cookieService.set('dropbox_token', result.token);
+      }
     });
   }
 
