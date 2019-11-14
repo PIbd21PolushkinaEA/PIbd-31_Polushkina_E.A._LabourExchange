@@ -38,9 +38,11 @@ export class WorkComponent implements OnInit {
   vacancies: Vacancy[];
 
   observable = new Subject<string>()
-
+  text:string;
+  
   observable_id = new Subject<Number>();
   observable_vacancy = new Subject<any>();
+  
 
   ngOnInit() {
     this.vacanciesService.getVacancies().subscribe(vacancies => {
