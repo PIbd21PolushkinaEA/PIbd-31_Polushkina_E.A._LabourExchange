@@ -23,7 +23,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { UserService } from './user.service';
 import { CookieService } from 'ngx-cookie-service'
 import { isAuthorized } from './isAuthorized';
-import { InfoComponent } from './info/info.component'
+import { InfoComponent } from './info/info.component';
+import { WebhookComponent } from './webhook/webhook.component'
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { InfoComponent } from './info/info.component'
     WorkComponent,
     LoginComponent,
     RegistrationComponent,
-    InfoComponent
+    InfoComponent,
+    WebhookComponent
   ],
   imports: [
     BrowserModule,

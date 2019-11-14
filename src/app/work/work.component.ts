@@ -37,7 +37,7 @@ export class WorkComponent implements OnInit {
 
   vacancies: Vacancy[];
 
-  observable = new Subject<string>()
+  observable = new Subject<string>();
   text:string;
   
   observable_id = new Subject<Number>();
@@ -62,7 +62,7 @@ export class WorkComponent implements OnInit {
 
     var socket = new WebSocket("wss://labourexchangewebsocket.herokuapp.com");
 
-    let vacancy = this.observable_vacancy
+    let vacancy = this.observable_vacancy;
     let id = this.observable_id;
 
     socket.onmessage = function(event) {     

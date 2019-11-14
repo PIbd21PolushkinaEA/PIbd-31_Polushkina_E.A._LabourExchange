@@ -10,6 +10,7 @@ import { AddComponent } from './admin/add/add.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { InfoComponent } from './info/info.component';
+import { WebhookComponent } from './webhook/webhook.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegistrationComponent }, 
   //{ path: 'work', loadChildren: './work/work.module#WorkModule' },
   { path: 'info', component: InfoComponent },
+  { path: 'webhook', component: WebhookComponent },
 ];
 
 @NgModule({
