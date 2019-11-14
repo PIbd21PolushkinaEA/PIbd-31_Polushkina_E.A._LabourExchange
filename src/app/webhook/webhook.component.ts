@@ -10,14 +10,14 @@ export class WebhookComponent implements OnInit {
 
   constructor() {
     this.observable_message.subscribe(val => {
-      if (val){
+      if (this.messages){
         this.messages.push(val);
         console.log(this.messages);
       }
     });
    }
 
-  messages: string[];
+  messages: string[] = [];
   observable_message = new Subject<string>();
 
   ngOnInit() {
