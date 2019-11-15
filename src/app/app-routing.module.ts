@@ -14,9 +14,9 @@ import { WebhookComponent } from './webhook/webhook.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'admin', component: AdminComponent},
-  { path: 'admin/add', component: AddComponent},
-  { path: 'admin/edit/:id', component: AddComponent , data:{mode:"edit"}},
+  { path: 'admin', component: AdminComponent, canActivate:[isAuthorized]},
+  { path: 'admin/add', component: AddComponent, canActivate:[isAuthorized]},
+  { path: 'admin/edit/:id', component: AddComponent , data:{mode:"edit"}, canActivate:[isAuthorized]},
   { path: 'work', component: WorkComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'login', component: LoginComponent }, 
